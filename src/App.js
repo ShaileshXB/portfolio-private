@@ -21,7 +21,7 @@ function App() {
           Focused on developing innovative, scalable, and efficient software solutions.
         </p>
         <div className="links animate-up delay-3">
-          <a href="mailto:shalinchristian3@gmail.com" className="btn primary">Email Me</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=shalinchristian71@gmail.com" target="_blank" rel="noreferrer" className="btn primary">Email Me</a>
           <a href="https://github.com/shalinchristian" target="_blank" rel="noreferrer" className="btn outline">GitHub</a>
         </div>
       </header>
