@@ -1,44 +1,34 @@
 function Footer() {
   return (
-    <footer className="bg-[#020C1B] text-gray-400 px-10 py-6 mt-10">
-      
-      <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-        
-        {/* Left */}
-        <p className="text-sm">
-          © {new Date().getFullYear()} Shalin Christian. All rights reserved.
-        </p>
+    <footer className="px-6 py-8 text-slate-500 sm:px-10 lg:px-16">
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 border-t border-slate-800 pt-6 text-sm md:flex-row md:items-center md:justify-between">
+        <p>Copyright {new Date().getFullYear()} Shalin Christian</p>
 
-        {/* Right */}
-        <div className="flex space-x-6 text-sm">
-          <a 
-            href="https://github.com/shalinchristian3" 
-            target="_blank" 
+        <div className="flex gap-6">
+          <a
+            href="https://github.com/shalinchristian"
+            target="_blank"
             rel="noreferrer"
-            className="hover:text-white transition"
+            className="transition hover:text-slate-200"
           >
             GitHub
           </a>
-
-          <a 
-            href="https://linkedin.com" 
-            target="_blank" 
+          <a
+            href="https://linkedin.com"
+            target="_blank"
             rel="noreferrer"
-            className="hover:text-white transition"
+            className="transition hover:text-slate-200"
           >
             LinkedIn
           </a>
-
-          <a 
+          <a
             href="mailto:shalinchristian71@gmail.com"
-            className="hover:text-white transition"
+            className="transition hover:text-slate-200"
           >
             Email
           </a>
         </div>
-
       </div>
-
     </footer>
   );
 }
