@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="px-6 py-8 text-slate-500 sm:px-10 lg:px-16">
+    <footer className="page-padding py-8 text-slate-500">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 border-t border-slate-800 pt-6 text-sm md:flex-row md:items-center md:justify-between">
         <p>Copyright {new Date().getFullYear()} Shalin Christian</p>
 

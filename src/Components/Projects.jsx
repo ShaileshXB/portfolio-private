@@ -82,24 +82,22 @@ function Projects() {
   }, []);
 
   return (
-    <section id="projects" className="px-6 py-20 sm:px-10 lg:px-16">
-      <div className="mx-auto max-w-5xl border-t border-slate-800 pt-10">
-        <div className="grid gap-8 md:grid-cols-[180px_1fr]">
+    <section id="projects" className="section-shell">
+      <div className="section-frame">
+        <div className="section-grid">
           <div>
-            <p className="text-sm uppercase tracking-[0.25em] text-slate-500">
-              Projects
-            </p>
+            <p className="section-label">Projects</p>
           </div>
 
           <div className="space-y-5">
             {status === "loading" && (
-              <p className="border border-slate-800 px-5 py-4 text-slate-400">
+              <p className="panel text-slate-400">
                 Loading pinned repositories...
               </p>
             )}
 
             {status === "error" && (
-              <p className="border border-slate-700 px-5 py-4 text-slate-300">
+              <p className="panel border-slate-700 text-slate-300">
                 I couldn&apos;t load the pinned repositories right now. Please
                 check that your GitHub pins are public and try again.
               </p>
@@ -109,10 +107,10 @@ function Projects() {
               repos.map((repo) => (
                 <article
                   key={repo.id}
-                  className="border border-slate-800 p-6 transition hover:border-slate-600"
+                  className="panel transition hover:border-slate-600"
                 >
                   <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                    <div className="max-w-2xl">
+                    <div className="max-w-2xl min-w-0">
                       <h3 className="text-xl font-medium text-slate-100">
                         {repo.name}
                       </h3>
@@ -120,7 +118,7 @@ function Projects() {
                         {repo.description || "Project details coming soon."}
                       </p>
                     </div>
-                    <span className="text-sm uppercase tracking-[0.18em] text-slate-500">
+                    <span className="section-label">
                       {repo.language}
                     </span>
                   </div>
@@ -129,7 +127,7 @@ function Projects() {
                     href={repo.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-6 inline-block text-sm font-medium uppercase tracking-[0.18em] text-slate-200 transition hover:text-white"
+                    className="mt-6 inline-block text-sm font-medium uppercase tracking-[0.16em] text-slate-200 transition hover:text-white"
                   >
                     Open Repository
                   </a>

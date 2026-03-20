@@ -14,20 +14,18 @@ const educationItems = [
 
 function Education() {
   return (
-    <section id="education" className="px-6 py-20 sm:px-10 lg:px-16">
-      <div className="mx-auto max-w-5xl border-t border-slate-800 pt-10">
-        <div className="grid gap-8 md:grid-cols-[180px_1fr]">
+    <section id="education" className="section-shell">
+      <div className="section-frame">
+        <div className="section-grid">
           <div>
-            <p className="text-sm uppercase tracking-[0.25em] text-slate-500">
-              Education
-            </p>
+            <p className="section-label">Education</p>
           </div>
 
           <div className="space-y-6">
             {educationItems.map((item) => (
               <div
                 key={`${item.degree}-${item.school}`}
-                className="border border-slate-800 bg-slate-950/20 p-6"
+                className="panel"
               >
                 <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
                   <div>
@@ -36,7 +34,7 @@ function Education() {
                     </h3>
                     <p className="mt-1 text-slate-300">{item.school}</p>
                   </div>
-                  <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
+                  <p className="section-label">
                     {item.period}
                   </p>
                 </div>

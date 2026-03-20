@@ -15,30 +15,25 @@ const skillGroups = [
 
 function Skills() {
   return (
-    <section id="skills" className="px-6 py-20 sm:px-10 lg:px-16">
-      <div className="mx-auto max-w-5xl border-t border-slate-800 pt-10">
-        <div className="grid gap-8 md:grid-cols-[180px_1fr]">
+    <section id="skills" className="section-shell">
+      <div className="section-frame">
+        <div className="section-grid">
           <div>
-            <p className="text-sm uppercase tracking-[0.25em] text-slate-500">
-              Skills
-            </p>
+            <p className="section-label">Skills</p>
           </div>
 
           <div className="space-y-6">
             {skillGroups.map((group) => (
               <div
                 key={group.title}
-                className="grid gap-4 border-b border-slate-900 pb-6 md:grid-cols-[160px_1fr]"
+                className="grid gap-4 border-b border-slate-900 pb-6 md:grid-cols-[140px_1fr]"
               >
                 <h3 className="text-lg font-medium text-slate-200">
                   {group.title}
                 </h3>
                 <div className="flex flex-wrap gap-3">
                   {group.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="border border-slate-700 px-3 py-2 text-sm text-slate-300"
-                    >
+                    <span key={skill} className="tag">
                       {skill}
                     </span>
                   ))}

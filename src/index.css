@@ -1,3 +1,67 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[#0b0f14] text-white antialiased;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply min-h-screen bg-[radial-gradient(circle_at_top,_rgba(148,163,184,0.08),_transparent_38%),linear-gradient(180deg,_#0b0f14_0%,_#0b0f14_52%,_#0f141b_100%)];
+  }
+
+  .page-padding {
+    @apply px-5 sm:px-8 lg:px-16;
+  }
+
+  .content-width {
+    @apply mx-auto max-w-5xl;
+  }
+
+  .section-shell {
+    @apply px-5 py-16 sm:px-8 sm:py-20 lg:px-16;
+  }
+
+  .section-frame {
+    @apply mx-auto max-w-5xl border-t border-slate-800 pt-8 sm:pt-10;
+  }
+
+  .section-grid {
+    @apply grid gap-6 md:grid-cols-[160px_1fr] md:gap-8;
+  }
+
+  .section-label {
+    @apply text-xs uppercase tracking-[0.22em] text-slate-500 sm:text-sm sm:tracking-[0.25em];
+  }
+
+  .section-title {
+    @apply max-w-3xl text-3xl font-semibold leading-tight text-slate-100 sm:text-4xl;
+  }
+
+  .body-copy {
+    @apply text-base leading-7 text-slate-400 sm:text-lg sm:leading-8;
+  }
+
+  .panel {
+    @apply border border-slate-800 bg-slate-950/20 p-5 sm:p-6;
+  }
+
+  .button-primary {
+    @apply border border-slate-200 px-5 py-3 text-center text-sm font-medium uppercase tracking-[0.16em] text-slate-100 transition hover:bg-slate-100 hover:text-slate-950 sm:px-6;
+  }
+
+  .button-secondary {
+    @apply border border-white/10 px-5 py-3 text-center text-sm font-medium uppercase tracking-[0.16em] text-slate-400 transition hover:border-slate-500 hover:text-slate-100 sm:px-6;
+  }
+
+  .tag {
+    @apply border border-slate-700 px-3 py-2 text-sm text-slate-300;
+  }
+}
