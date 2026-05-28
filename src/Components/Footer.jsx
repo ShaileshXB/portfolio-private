@@ -14,7 +14,7 @@ function Footer() {
             GitHub
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/shalinvchristian/"
             target="_blank"
             rel="noreferrer"
             className="transition hover:text-slate-200"

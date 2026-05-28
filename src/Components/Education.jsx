@@ -1,14 +1,14 @@
 const educationItems = [
   {
-    degree: "Bachelor's Degree in Computer Applications",
-    school: "Charotar University of Science and Technology",
-    period: "2022-2025",
-    note: "Focused on software fundamentals, web development, and practical problem solving.",
-  },{
     degree: "Master's Degree in Computer Applications",
     school: "Charotar University of Science and Technology",
     period: "2025-2027",
-    note: "",
+    note: "Focused on full-stack web development, REST API design, backend engineering, and modern web technologies. Built practical projects while strengthening software engineering and problem-solving skills.",
+  },{
+    degree: "Bachelor's Degree in Computer Applications",
+    school: "Charotar University of Science and Technology",
+    period: "2022-2025",
+    note: "Focused on essential computer application skills such as programming, web technologies, database management, and systems concepts.",
   },
 ];
 

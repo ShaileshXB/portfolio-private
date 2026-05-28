@@ -20,14 +20,60 @@ function normalizePinnedRepos(payload) {
       id: repo.id || repo.repo || repo.name,
       name: repo.repo || repo.name,
       description: repo.description || repo.desc || "",
-      language:
-        repo.language ||
-        repo.primaryLanguage ||
-        repo.primary_language ||
-        "Code",
+      language: repo.language || repo.primaryLanguage || repo.primary_language || "",
       link: repo.link || repo.url || repo.html_url,
+      homepage: repo.homepage || null,
     }))
     .filter((repo) => repo.name && repo.link);
+}
+
+function getRepoSlugFromLink(link) {
+  try {
+    const pathnameParts = new URL(link).pathname.split("/").filter(Boolean);
+
+    if (pathnameParts.length < 2) {
+      return null;
+    }
+
+    return pathnameParts.slice(0, 2).join("/");
+  } catch {
+    return null;
+  }
+}
+
+async function enrichWithHomepages(repos, signal) {
+  return Promise.all(
+    repos.map(async (repo) => {
+      const slug = getRepoSlugFromLink(repo.link);
+
+      if (!slug) {
+        return repo;
+      }
+
+      try {
+        const response = await fetch(`https://api.github.com/repos/${slug}`, {
+          signal,
+        });
+
+        if (!response.ok) {
+          return repo;
+        }
+
+        const data = await response.json();
+
+        return {
+          ...repo,
+          homepage: data.homepage || repo.homepage || null,
+        };
+      } catch (error) {
+        if (error.name === "AbortError") {
+          throw error;
+        }
+
+        return repo;
+      }
+    }),
+  );
 }
 
 async function fetchPinnedRepos(signal) {
@@ -48,7 +94,7 @@ async function fetchPinnedRepos(signal) {
       const repos = normalizePinnedRepos(data);
 
       if (repos.length > 0) {
-        return repos;
+        return enrichWithHomepages(repos, signal);
       }
     } catch (error) {
       if (error.name === "AbortError") {
@@ -123,14 +169,27 @@ function Projects() {
                     </span>
                   </div>
 
-                  <a
-                    href={repo.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-6 inline-block text-sm font-medium uppercase tracking-[0.16em] text-slate-200 transition hover:text-white"
-                  >
-                    Open Repository
-                  </a>
+                  <div className="mt-6 flex flex-wrap gap-4">
+                    <a
+                      href={repo.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-block text-sm font-medium uppercase tracking-[0.16em] text-slate-200 transition hover:text-white"
+                    >
+                      Open Repository
+                    </a>
+
+                    {repo.homepage && (
+                      <a
+                        href={repo.homepage}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-block text-sm font-medium uppercase tracking-[0.16em] text-slate-200 transition hover:text-white"
+                      >
+                        Open Live
+                      </a>
+                    )}
+                  </div>
                 </article>
               ))}
           </div>
