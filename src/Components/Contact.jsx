@@ -7,16 +7,16 @@ function Contact() {
             <p className="section-label">Contact</p>
           </div>
 
-          <div className="max-w-3xl">
-            <h2 className="section-title">
-              Thanks for stopping by.
-            </h2>
-            <p className="body-copy mt-5">
-              If you&apos;d like to talk about a project, technology, or just say
-              hello, my inbox is open.
-            </p>
+          <div className="contact-content">
+            <div className="contact-copy">
+              <h2 className="section-title">For professional inquiries.</h2>
+              <p className="body-copy">
+                For questions about my work, project discussions, or professional
+                correspondence, email is the most direct way to reach me.
+              </p>
+            </div>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <div className="contact-actions">
               <a href="mailto:shalinchristian71@gmail.com" className="button-primary">
                 Email Me
               </a>

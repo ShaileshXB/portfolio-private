@@ -89,19 +89,23 @@
   .network-label-two { right: 12%; bottom: 22%; }
   .network-label-three { right: 8%; top: 14%; }
 
-  .about-layout { @apply grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-16; }
-  .about-visual { @apply relative flex min-h-[300px] items-center justify-center overflow-hidden sm:min-h-[380px]; background: var(--surface-raised); border: 1px solid var(--faint); }
-  .system-diagram { width: 100%; height: 100%; padding: 1.25rem; }
-  .system-diagram { overflow: visible; }
-  .system-connection { fill: none; stroke: rgba(240, 239, 235, 0.26); stroke-width: 1; }
-  .system-connection-muted { stroke: rgba(240, 239, 235, 0.1); }
-  .system-flow { fill: none; stroke: url(#system-flow); stroke-dasharray: 8 18; stroke-width: 2; animation: flow-line 5s linear infinite; }
-  .system-node { fill: var(--surface); stroke: rgba(240, 239, 235, 0.3); stroke-width: 1; }
-  .system-node-core { fill: rgba(143, 175, 203, 0.16); stroke: var(--accent); stroke-width: 1.5; animation: system-pulse 4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-  .system-node-ui, .system-node-data { stroke: rgba(143, 175, 203, 0.65); }
-  .system-diagram text { fill: var(--muted); font-family: var(--sans); font-size: 0.55rem; text-anchor: middle; letter-spacing: 0.08em; }
-  .system-packet { fill: var(--accent); animation: packet-travel 5s linear infinite; }
-  .system-packet-delay { animation-delay: -2.5s; }
+  .about-layout { @apply grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-16; min-width: 0; }
+  .about-visual { @apply relative flex h-[255px] min-w-0 flex-col overflow-hidden sm:h-[385px]; background: var(--surface-raised); border: 1px solid var(--faint); }
+  .code-window-bar { display: flex; align-items: center; gap: 0.4rem; border-bottom: 1px solid var(--faint); padding: 0.8rem 1rem; }
+  .code-window-dot { width: 0.4rem; height: 0.4rem; border-radius: 50%; background: rgba(240, 239, 235, 0.3); }
+  .code-window-dot:first-child { background: var(--accent); }
+  .code-window-file { margin-left: 0.7rem; color: var(--muted); font-family: Consolas, "Courier New", monospace; font-size: 0.68rem; }
+  .code-editor { position: relative; flex: 1; min-width: 0; overflow: hidden; padding: 0.85rem 1rem 0.5rem; color: var(--text); font-family: Consolas, "Courier New", monospace; font-size: clamp(0.65rem, 1.5vw, 0.8rem); line-height: 1.55; }
+  .code-stream { min-width: 0; animation: code-scroll 14s ease-in-out infinite; }
+  .code-editor p { margin: 0; max-width: 100%; overflow: hidden; text-overflow: clip; white-space: nowrap; }
+  .code-editor p > span:first-child { display: inline-block; width: 2rem; color: rgba(166, 173, 169, 0.42); }
+  .code-editor b { color: var(--accent); font-weight: 400; }
+  .code-editor i { color: var(--muted); font-style: normal; }
+  .code-editor em { color: var(--accent); font-style: normal; }
+  .code-line-active { background: rgba(143, 175, 203, 0.08); }
+  .code-cursor { display: inline-block; width: 0.45rem; height: 1em; margin-left: 0.2rem; vertical-align: -0.15em; background: var(--accent); animation: code-blink 1.1s steps(2, start) infinite; }
+  .code-status { display: flex; align-items: center; gap: 0.45rem; border-top: 1px solid var(--faint); padding: 0.4rem 1rem; color: var(--muted); font-family: Consolas, "Courier New", monospace; font-size: 0.62rem; }
+  .code-status span { width: 0.35rem; height: 0.35rem; border-radius: 50%; background: var(--accent); animation: status-pulse 2s ease-in-out infinite; }
   .accent-rule { width: 3rem; height: 1px; background: var(--accent); }
 
   .button-primary, .button-secondary { @apply inline-flex items-center justify-center px-5 py-3 text-center text-xs font-medium uppercase tracking-[0.15em] transition sm:px-6; }
@@ -161,7 +165,12 @@
   .project-links span { color: var(--accent); }
   .project-state { grid-column: 1 / -1; color: var(--muted); }
 
-  #contact .section-frame { @apply rounded-xl p-7 sm:p-12; border: 1px solid rgba(143, 175, 203, 0.3); background: var(--surface); }
+  #contact { padding-top: 4rem; }
+  #contact .section-frame { padding-top: 1.5rem; }
+  .contact-content { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(12rem, 0.8fr); gap: 3rem; align-items: end; border-bottom: 1px solid var(--faint); padding: 1rem 0 2.5rem; }
+  .contact-copy { max-width: 42rem; }
+  .contact-copy .body-copy { max-width: 38rem; margin-top: 1.5rem; }
+  .contact-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.75rem; }
   #contact .button-primary { background: var(--accent); }
   .text-slate-100, .text-slate-200, .text-slate-300 { color: var(--text) !important; }
   .text-slate-400, .text-slate-500 { color: var(--muted) !important; }
@@ -169,9 +178,9 @@
 }
 
 @keyframes signal-move { 0%, 100% { opacity: 0.2; transform: translate(0); } 50% { opacity: 1; transform: translate(24px, 12px); } }
-@keyframes flow-line { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -52; } }
-@keyframes packet-travel { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
-@keyframes system-pulse { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.04); opacity: 1; } }
+@keyframes code-blink { 0%, 45% { opacity: 1; } 46%, 100% { opacity: 0; } }
+@keyframes status-pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+@keyframes code-scroll { 0%, 12% { transform: translateY(0); } 42%, 58% { transform: translateY(-5rem); } 88%, 100% { transform: translateY(0); } }
 
 @media (max-width: 767px) {
   .site-nav-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
@@ -188,12 +197,20 @@
   .education-record, .education-record-1 { min-height: 0; padding: 1.5rem; }
   .education-record-2 { margin-top: 0; }
   .education-record-body, .education-record-2 .education-record-body { padding-top: 2rem; }
-  .system-diagram { padding: 0.5rem; }
+  .about-visual { height: 235px; }
+  .code-editor { padding: 0.75rem 0.75rem 0.45rem; font-size: 0.62rem; line-height: 1.5; }
+  .code-editor p > span:first-child { width: 1.7rem; }
+  #contact { padding-top: 3rem; }
+  #contact .section-frame { padding-top: 1.25rem; }
+  .contact-content { grid-template-columns: 1fr; gap: 2rem; padding-bottom: 2rem; }
+  .contact-actions { justify-content: flex-start; }
 }
 
 @media (min-width: 768px) {
   #about, #skills, #experience, #education { scroll-margin-top: 5.5rem; }
-  #skills { scroll-margin-top: 5rem; }
+  #skills { scroll-margin-top: 3.75rem; }
+  #about .section-grid { column-gap: 2rem; }
+  #about .about-layout { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 3rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -203,6 +220,4 @@
     scroll-behavior: auto !important;
   }
 
-  @keyframes flow-line { to { stroke-dashoffset: -52; } }
-  @keyframes packet-travel { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
 }
