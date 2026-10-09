@@ -135,15 +135,15 @@ function Projects() {
             <p className="section-label">Projects</p>
           </div>
 
-          <div className="space-y-5">
+          <div className="projects-grid">
             {status === "loading" && (
-              <p className="panel text-slate-400">
+              <p className="project-state">
                 Loading pinned repositories...
               </p>
             )}
 
             {status === "error" && (
-              <p className="panel border-slate-700 text-slate-300">
+              <p className="project-state">
                 I couldn&apos;t load the pinned repositories right now. Please
                 check that your GitHub pins are public and try again.
               </p>
@@ -153,30 +153,21 @@ function Projects() {
               repos.map((repo) => (
                 <article
                   key={repo.id}
-                  className="panel transition hover:border-slate-600"
+                  className="project-card"
                 >
-                  <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                    <div className="max-w-2xl min-w-0">
-                      <h3 className="text-xl font-medium text-slate-100">
-                        {repo.name}
-                      </h3>
-                      <p className="mt-3 leading-7 text-slate-400">
-                        {repo.description || "Project details coming soon."}
-                      </p>
-                    </div>
-                    <span className="section-label">
-                      {repo.language}
-                    </span>
+                  <div className="project-card-top">
+                    <span className="project-index">Project</span>
+                    <span className="project-language">{repo.language || "Web"}</span>
                   </div>
-
-                  <div className="mt-6 flex flex-wrap gap-4">
+                  <h3>{repo.name}</h3>
+                  <p>{repo.description || "Project details coming soon."}</p>
+                  <div className="project-links">
                     <a
                       href={repo.link}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-block text-sm font-medium uppercase tracking-[0.16em] text-slate-200 transition hover:text-white"
                     >
-                      Open Repository
+                      Repository <span>↗</span>
                     </a>
 
                     {repo.homepage && (
@@ -184,9 +175,8 @@ function Projects() {
                         href={repo.homepage}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-block text-sm font-medium uppercase tracking-[0.16em] text-slate-200 transition hover:text-white"
                       >
-                        Open Live
+                        Live site <span>↗</span>
                       </a>
                     )}
                   </div>
