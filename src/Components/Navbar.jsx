@@ -21,67 +21,49 @@ function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-20 border-b border-white/10 bg-[#0b0f14]/90 backdrop-blur">
-      <div className="page-padding mx-auto max-w-6xl py-4">
-        <div className="flex items-center justify-between gap-4">
+    <header className="site-nav">
+      <div className="site-nav-inner">
+        <div className="site-nav-bar">
           <a
             href="#home"
-            className="text-base font-semibold uppercase tracking-[0.16em] text-slate-100 sm:text-lg sm:tracking-[0.18em]"
+            className="site-brand"
             onClick={handleClose}
           >
-            Shalin Christian
+            <span className="site-brand-name">Shalin Christian</span>
           </a>
 
-          <button
-            type="button"
-            aria-expanded={isOpen}
-            aria-label="Toggle navigation menu"
-            className="flex h-11 w-11 items-center justify-center border border-white/10 text-slate-200 transition hover:border-slate-500 hover:text-white md:hidden"
-            onClick={handleToggle}
-          >
-            <span className="relative block h-4 w-5">
-              <span
-                className={`absolute left-0 top-0 h-0.5 w-5 bg-current transition ${
-                  isOpen ? "translate-y-[7px] rotate-45" : ""
-                }`}
-              />
-              <span
-                className={`absolute left-0 top-[7px] h-0.5 w-5 bg-current transition ${
-                  isOpen ? "opacity-0" : "opacity-100"
-                }`}
-              />
-              <span
-                className={`absolute left-0 top-[14px] h-0.5 w-5 bg-current transition ${
-                  isOpen ? "-translate-y-[7px] -rotate-45" : ""
-                }`}
-              />
-            </span>
-          </button>
-
-          <nav className="hidden items-center gap-6 text-sm text-slate-400 md:flex">
+          <nav className="site-nav-links" aria-label="Primary navigation">
             {navItems.map((item) => (
-              <a
-                key={item.href}
-                className="transition hover:text-slate-100"
-                href={item.href}
-              >
+              <a key={item.href} href={item.href}>
                 {item.label}
               </a>
             ))}
           </nav>
+
+          <button
+            type="button"
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
+            aria-label="Toggle navigation menu"
+            className="site-menu-toggle"
+            onClick={handleToggle}
+          >
+            <span className={isOpen ? "is-open" : ""} />
+            <span className={isOpen ? "is-open" : ""} />
+            <span className={isOpen ? "is-open" : ""} />
+          </button>
         </div>
 
         {isOpen && (
-          <nav className="mt-4 border-t border-white/10 pt-4 md:hidden">
-            <div className="flex flex-col gap-1">
+          <nav id="mobile-navigation" className="site-mobile-menu" aria-label="Mobile navigation">
+            <div>
               {navItems.map((item) => (
                 <a
                   key={item.href}
-                  className="py-3 text-sm text-slate-300 transition hover:text-white"
                   href={item.href}
                   onClick={handleClose}
                 >
-                  {item.label}
+                  <span>{item.label}</span><span>↗</span>
                 </a>
               ))}
             </div>

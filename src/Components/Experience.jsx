@@ -9,24 +9,19 @@ function Experience() {
             <p className="section-label">Experience</p>
           </div>
 
-          <div className="space-y-6">
-            {profile.experience.map((item) => (
+          <div className="experience-board">
+            {profile.experience.map((item, index) => (
               <article
                 key={`${item.role}-${item.company}-${item.period}`}
-                className="panel"
+                className={`experience-entry ${index === 0 ? "experience-entry-primary" : "experience-entry-secondary"}`}
               >
-                <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
-                  <div>
-                    <h3 className="text-xl font-semibold text-slate-100">
-                      {item.role}
-                    </h3>
-                    <p className="mt-1 text-slate-300">{item.company}</p>
-                  </div>
-                  <p className="section-label">
-                    {item.period}
-                  </p>
+                <div className="experience-entry-top">
+                  <span className="experience-period">{item.period}</span>
+                  <span className="experience-entry-rule" aria-hidden="true" />
                 </div>
-                <p className="mt-4 max-w-2xl text-slate-400">{item.summary}</p>
+                <h3>{item.role}</h3>
+                <p className="experience-company">{item.company}</p>
+                <p className="experience-summary">{item.summary}</p>
               </article>
             ))}
           </div>

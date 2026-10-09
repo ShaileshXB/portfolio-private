@@ -30,21 +30,19 @@ function Skills() {
             <p className="section-label">Skills</p>
           </div>
 
-          <div className="space-y-6">
-            {skillGroups.map((group) => (
-              <div
-                key={group.title}
-                className="grid gap-4 border-b border-slate-900 pb-6 md:grid-cols-[140px_1fr]"
-              >
-                <h3 className="text-lg font-medium text-slate-200">
-                  {group.title}
-                </h3>
-                <div className="flex flex-wrap gap-3">
+          <div className="skills-list">
+            {skillGroups.map((group, index) => (
+              <div key={group.title} className="skill-group">
+                <span className="skill-number">{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3>{group.title}</h3>
+                  <div className="skill-items">
                   {group.skills.map((skill) => (
                     <span key={skill} className="tag">
                       {skill}
                     </span>
                   ))}
+                  </div>
                 </div>
               </div>
             ))}

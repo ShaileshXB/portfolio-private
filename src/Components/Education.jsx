@@ -21,25 +21,19 @@ function Education() {
             <p className="section-label">Education</p>
           </div>
 
-          <div className="space-y-6">
-            {educationItems.map((item) => (
-              <div
-                key={`${item.degree}-${item.school}`}
-                className="panel"
-              >
-                <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
-                  <div>
-                    <h3 className="text-xl font-semibold text-slate-100">
-                      {item.degree}
-                    </h3>
-                    <p className="mt-1 text-slate-300">{item.school}</p>
-                  </div>
-                  <p className="section-label">
-                    {item.period}
-                  </p>
+          <div className="education-archive">
+            {educationItems.map((item, index) => (
+              <article className={`education-record education-record-${index + 1}`} key={`${item.degree}-${item.school}`}>
+                <div className="education-record-mark" aria-hidden="true" />
+                <div className="education-record-top">
+                  <span className="education-period">{item.period}</span>
                 </div>
-                <p className="mt-4 max-w-2xl text-slate-400">{item.note}</p>
-              </div>
+                <div className="education-record-body">
+                  <h3>{item.degree}</h3>
+                  <p className="education-school">{item.school}</p>
+                  <p className="education-note">{item.note}</p>
+                </div>
+              </article>
             ))}
           </div>
         </div>
